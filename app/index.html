@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice After Dark — GTA-Style Cover Maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="masthead">
+  <p class="masthead-kicker">Leonida · Est. 2026</p>
+  <h1>Vice After Dark</h1>
+  <p class="masthead-sub">A photo and a caption, made into a GTA-style poster cover. Your photos never leave this machine.</p>
+</header>
+
+<main class="app">
+  <section class="preview" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" tabindex="0"
+      aria-label="Cover preview. Click a panel to select it, drag to move the photo, shift-click to move the face anchor, arrow keys to nudge, plus and minus to zoom."></canvas>
+    <p class="hint" id="panel-readout" role="status">Panel 1 of 4</p>
+    <p class="hint">Click a panel to select it · drag to pan · shift-click to move the face anchor · arrow keys nudge · + / − zoom · keys 1–4 pick a panel</p>
+  </section>
+
+  <aside class="controls" aria-label="Cover controls">
+    <section>
+      <h2>Scenes</h2>
+      <p class="section-note">One click: photo, look, layout and caption.</p>
+      <div id="scenes" class="button-row" role="group" aria-label="Scenes"></div>
+    </section>
+
+    <section>
+      <h2>Look</h2>
+      <div id="looks" class="choice-row" role="radiogroup" aria-label="Look"></div>
+    </section>
+
+    <section>
+      <h2>Layout</h2>
+      <div id="layouts" class="choice-row" role="radiogroup" aria-label="Layout"></div>
+    </section>
+
+    <section>
+      <h2>Photos</h2>
+      <p class="section-note">Tap a sample to put it in the selected panel. Five fictional people, made for this app.</p>
+      <div id="samples" class="sample-grid"></div>
+      <label class="upload">Your own photo
+        <input id="upload" type="file" accept="image/*">
+      </label>
+      <div class="button-row">
+        <button id="use-everywhere" type="button">Use this photo in all panels</button>
+        <button id="reset-framing" type="button">Reset framing</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Words</h2>
+      <label>Caption
+        <input id="caption" type="text" maxlength="30" value="VICE CITY" autocomplete="off">
+      </label>
+      <label>Kicker
+        <input id="kicker" type="text" maxlength="30" value="WELCOME TO" autocomplete="off">
+      </label>
+      <label>Billing, line 1
+        <input id="billing1" type="text" maxlength="60" value="VICE AFTER DARK PRESENTS" autocomplete="off">
+      </label>
+      <label>Billing, line 2
+        <input id="billing2" type="text" maxlength="60" value="STARRING DUKE · MARINA · LUNA · VIC · ROSA" autocomplete="off">
+      </label>
+    </section>
+
+    <section>
+      <h2>Frame the face</h2>
+      <label>Zoom <span id="zoom-value">1.0×</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.1" value="1">
+      </label>
+    </section>
+
+    <section>
+      <h2>Export</h2>
+      <div id="sizes" class="choice-row" role="radiogroup" aria-label="Export size"></div>
+      <button id="export" type="button" class="export-btn">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+</main>
+
+<footer class="colophon">
+  <p>Sample portraits are fictional people made with an image model for this app. No Rockstar Games logo, artwork, character or font is used. Type: Rokkitt and PT Sans Narrow, SIL Open Font License.</p>
+</footer>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

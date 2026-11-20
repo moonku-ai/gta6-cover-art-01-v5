@@ -1,0 +1,240 @@
+/* Vice After Dark — editor chrome. Dark plum, sunset accents, Rokkitt display
+   type with PT Sans Narrow labels. No network: fonts are files under fonts/. */
+@font-face {
+  font-family: Rokkitt;
+  src: url("./fonts/rokkitt-800.woff2") format("woff2");
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PT Sans Narrow";
+  src: url("./fonts/ptsansnarrow-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --plum: #160a24;
+  --plum-2: #241335;
+  --plum-3: #31194a;
+  --ink: #fff3e0;
+  --muted: #c9aed6;
+  --accent: #ffb703;
+  --pink: #ff5e7a;
+  --line: #4a2a63;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--plum);
+  color: var(--ink);
+  font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.masthead {
+  padding: 28px 28px 8px;
+  border-bottom: 4px solid transparent;
+  border-image: linear-gradient(90deg, var(--accent), var(--pink), #7b2ff7) 1;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.masthead-kicker {
+  margin: 0 0 2px;
+  color: var(--accent);
+  letter-spacing: 0.28em;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.masthead h1 {
+  font-family: Rokkitt, Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 0.95;
+  margin: 0;
+  background: linear-gradient(180deg, #ffd166 0%, #ff5e7a 62%, #ff9a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.masthead-sub { margin: 8px 0 0; color: var(--muted); max-width: 640px; }
+
+.app {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 28px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 28px;
+  align-items: start;
+}
+
+.preview { position: sticky; top: 16px; }
+#cover {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  outline: none;
+  cursor: crosshair;
+}
+#cover:focus-visible { box-shadow: 0 0 0 3px var(--accent), 0 18px 50px rgba(0, 0, 0, 0.55); }
+.hint { color: var(--muted); font-size: 15px; margin: 10px 0 0; }
+#panel-readout { color: var(--ink); font-size: 17px; }
+
+.controls section {
+  background: var(--plum-2);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px 18px 18px;
+  margin-bottom: 16px;
+}
+.controls h2 {
+  font-family: Rokkitt, Georgia, serif;
+  font-weight: 800;
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+.section-note { color: var(--muted); font-size: 15px; margin: 0 0 10px; }
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 13px;
+  cursor: pointer;
+  background: var(--plum);
+  font-size: 16px;
+}
+.choice:has(input:checked) {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 22%, var(--plum));
+  box-shadow: inset 4px 0 0 var(--swatch, var(--accent));
+}
+.choice input { accent-color: var(--accent); margin: 0; }
+
+.button-row { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  font-family: "PT Sans Narrow", sans-serif;
+  font-size: 17px;
+  color: var(--ink);
+  background: var(--plum-3);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.scene-btn { background: linear-gradient(135deg, #3d1e6d, #7a2d5f); border-color: #7a2d8f; }
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.sample-btn {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  position: relative;
+  aspect-ratio: 1 / 1.35;
+}
+.sample-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sample-btn span {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(10, 4, 18, 0.78);
+  font-size: 14px;
+  padding: 3px 0;
+  text-align: center;
+}
+
+label { display: block; margin-bottom: 12px; font-size: 16px; color: var(--muted); }
+label input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 11px;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-size: 18px;
+  color: var(--ink);
+  background: var(--plum);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.upload {
+  display: block;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.upload input { display: block; margin: 8px auto 0; }
+
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+.export-btn {
+  width: 100%;
+  padding: 13px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, #ff9a3c, #ff5e7a);
+  border: none;
+  color: #1b0f2e;
+  margin-top: 10px;
+}
+#status { color: var(--accent); min-height: 1.4em; margin: 8px 0 0; }
+
+.colophon {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .preview { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* Shot mode: the cover alone, centred on a dark field. */
+body.shot-cover { background: #0d0518; }
+body.shot-cover .masthead,
+body.shot-cover .controls,
+body.shot-cover .colophon,
+body.shot-cover .hint { display: none; }
+body.shot-cover .app { display: block; max-width: none; padding: 0; }
+body.shot-cover .preview { position: static; }
+body.shot-cover #cover {
+  width: min(100vw, calc(100vh * var(--cover-aspect, 1)));
+  max-height: 100vh;
+  margin: 0 auto;
+  border-radius: 0;
+  box-shadow: none;
+}
